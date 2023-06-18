@@ -1,7 +1,26 @@
-import { GithubIcon,LinkedinIcon, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Send } from "lucide-react";
+import { ProjectCard } from "./components/projectsCard";
 import Image from "next/image";
 
-export default function Home() {
+interface ProjectProps {
+  id: number;
+  html_url: string;
+  name: string;
+  description: string;
+  forks_count: number;
+  language: string;
+  stargazers_count: number;
+}
+
+export default async function Home() {
+  const res = await fetch(
+    `http://api.github.com/users/ricardonun/repos?per_page=5`,
+    {
+      cache: "no-cache",
+    }
+  );
+  const projects = await res.json();
+
   return (
     <main>
       <nav className="w-full flex items-center justify-between gap-2 px-8 py-3 ">
@@ -9,13 +28,13 @@ export default function Home() {
           RICARDO <span className="text-white">NUNES</span>
         </h1>
         <div className="flex gap-10 text-xl">
-          <a href="" className="hover:text-orange-400">
+          <a href="#about" className="hover:text-orange-400">
             About
           </a>
-          <a href="" className="hover:text-orange-400">
+          <a href="#skills" className="hover:text-orange-400">
             Skills
           </a>
-          <a href="" className="hover:text-orange-400">
+          <a href="#projects" className="hover:text-orange-400">
             Projects
           </a>
         </div>
@@ -38,15 +57,13 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      <div className="flex mt-44 items-center justify-between px-48">
+      <div className="flex mt-44  items-center justify-between px-48">
         <div className="flex flex-col">
           <div>
             <h2 className="text-2xl">Hello, I am</h2>
           </div>
           <div>
-            <h1 className="flex text-6xl text-orange-500 mt-2">
-              &lt; Ricardo
-            </h1>
+            <h1 className="flex text-6xl text-orange-500 mt-2">&lt; Ricardo</h1>
             <h1 className="flex text-6xl text-orange-500">Nunes &#47;&gt; </h1>
           </div>
           <div className="flex text-5xl text-[#E0E0E0] my-5">
@@ -69,17 +86,17 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="flex items-center pt-10">
+      <div className="flex items-center pt-10" id="about">
         <div className="w-[60%] px-48 ">
           <h1 className="text-2xl text-orange-500">
             aboutMe<span className="text-white">&#40; &#41;</span>
           </h1>
           <p className="text-sm mt-4 text-[#F2F2F2]">
-            I begins to develop on 2014 with a server game with name Lineage II,
-            the game used the linguage JAVA, after this a iniciate some projects
-            in JAVA but never finish, so i beggin to study HTML, CSS, and
-            Javascript, a make some sites with HTML and JS, now I develop site
-            in Next.js, Node.js, Typescript and MySql.
+            I started to develop on 2014 in a server game named Lineage II, the
+            game language was JAVA, after this I iniciated some projects in JAVA
+            but never finished, so I begin to study HTML, CSS, and Javascript
+            and make some sites, now I develop site in Next.js, Node.js,
+            Typescript and MySql.
           </p>
         </div>
         <div className="flex w-[50%] flex-col items-center px-48">
@@ -109,15 +126,41 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col mt-40 px-48">
-        <h1 className="text-2xl text-orange-500">skills<span className="text-white">&#40; &#41;</span></h1>
+      <div
+        className="flex flex-col mt-40 px-48 h-80 pt-4 bg-[#161616]"
+        id="skills"
+      >
+        <h1 className="text-2xl text-orange-500">
+          skills<span className="text-white">&#40; &#41;</span>
+        </h1>
         <div className="flex gap-5 pt-5">
-          <Image src="/css3.svg" width={60} height={60} alt="css3"/>
-          <Image src="/html5.svg" width={60} height={60} alt="html5"/>
-          <Image src="/javascript.svg" width={60} height={60} alt="javascript"/>
-          <Image src="/nodejs.svg" width={60} height={60} alt="nodejs"/>
-          <Image src="/react.svg" width={60} height={60} alt="react"/>
-          <Image src="/typescript.svg" width={60} height={60} alt="css3"/>
+          <Image src="/css3.svg" width={60} height={60} alt="css3" />
+          <Image src="/html5.svg" width={60} height={60} alt="html5" />
+          <Image
+            src="/javascript.svg"
+            width={60}
+            height={60}
+            alt="javascript"
+          />
+          <Image src="/nodejs.svg" width={60} height={60} alt="nodejs" />
+          <Image src="/react.svg" width={60} height={60} alt="react" />
+          <Image src="/typescript.svg" width={60} height={60} alt="css3" />
+        </div>
+      </div>
+      <div className="flex flex-col mt-4 px-48 h-44" id="projects">
+        <h1 className="text-2xl text-orange-500">
+          projects<span className="text-white">&#40; &#41;</span>
+        </h1>
+        <div className="grid grid-cols-5 gap-2 mt-5 p-5">
+          {projects?.map((project: ProjectProps) => {
+            return (
+              <ProjectCard
+                name={project.name}
+                url={project.html_url}
+                key={project.id}
+              />
+            );
+          })}
         </div>
       </div>
     </main>
