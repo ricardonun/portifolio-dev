@@ -58,7 +58,7 @@ export default async function Home() {
             </div>
           </div>
         </nav>
-        <div className="lg:hi">
+        <div className="lg:hidden">
           <span>menu</span>
           <Menu size={40} />
         </div>
