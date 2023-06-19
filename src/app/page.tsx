@@ -1,4 +1,4 @@
-import { GithubIcon, LinkedinIcon, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Send, Menu } from "lucide-react";
 import { ProjectCard } from "./components/projectsCard";
 import Image from "next/image";
 
@@ -14,50 +14,85 @@ interface ProjectProps {
 
 export default async function Home() {
   const res = await fetch(
-    `http://api.github.com/users/ricardonun/repos?per_page=5`,
-    {
-      cache: "no-cache",
-    }
+    `http://api.github.com/users/ricardonun/repos?per_page=5`
   );
   const projects = await res.json();
 
   return (
     <main>
-      <nav className="w-full flex items-center justify-between gap-2 px-8 py-3 ">
-        <h1 className="text-gray-500 text-2xl">
+      <div className="flex px-5 justify-between">
+        <h1 className="text-gray-500 flex flex-col lg:flex-row lg:text-2xl ">
           RICARDO <span className="text-white">NUNES</span>
         </h1>
-        <div className="flex gap-10 text-xl">
-          <a href="#about" className="hover:text-orange-400">
-            About
-          </a>
-          <a href="#skills" className="hover:text-orange-400">
-            Skills
-          </a>
-          <a href="#projects" className="hover:text-orange-400">
-            Projects
-          </a>
-        </div>
-        <div className="flex gap-6 text-xl items-center justify-center">
-          <div className="flex items-center gap-1 hover:text-orange-400">
-            <LinkedinIcon size={20} />
-            <a href="https://www.linkedin.com/in/ricardonpaz/" target="_blank">
-              Linkedin
+        <nav className="w-full lg:flex items-center justify-between gap-2 px-8 py-3 hidden">
+          <div className="flex gap-10 text-xl">
+            <a href="#about" className="hover:text-orange-400">
+              About
+            </a>
+            <a href="#skills" className="hover:text-orange-400">
+              Skills
+            </a>
+            <a href="#projects" className="hover:text-orange-400">
+              Projects
             </a>
           </div>
-          <div className="flex items-center gap-1 hover:text-orange-400">
-            <GithubIcon size={20} />
-            <a href="http://www.github.com/ricardonun" target="_blank">
-              GitHub
-            </a>
+          <div className="flex gap-6 text-xl items-center justify-center">
+            <div className="flex items-center gap-1 hover:text-orange-400">
+              <LinkedinIcon size={20} />
+              <a
+                href="https://www.linkedin.com/in/ricardonpaz/"
+                target="_blank"
+              >
+                Linkedin
+              </a>
+            </div>
+            <div className="flex items-center gap-1 hover:text-orange-400">
+              <GithubIcon size={20} />
+              <a href="http://www.github.com/ricardonun" target="_blank">
+                GitHub
+              </a>
+            </div>
+            <div className="flex items-center gap-1 hover:text-orange-400 border border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
+              <Send size={16} />
+              <a>Contact me</a>
+            </div>
           </div>
-          <div className="flex items-center gap-1 hover:text-orange-400 border border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
-            <Send size={16} />
-            <a>Contact me</a>
-          </div>
+        </nav>
+        <div className="lg:hi">
+          <span>menu</span>
+          <Menu size={40} />
         </div>
-      </nav>
-      <div className="flex mt-44  items-center justify-between px-48">
+        <nav className="flex flex-col bg-black/20 h-full w-48 left-auto p-4 hidden">
+          <div className="flex flex-col">
+            <a href="">About</a>
+            <a href="">Skills</a>
+            <a href="">Projects</a>
+          </div>
+          <div className="flex flex-col gap-6 text-xl items-center justify-center">
+            <div className="flex items-center gap-1 hover:text-orange-400">
+              <LinkedinIcon size={20} />
+              <a
+                href="https://www.linkedin.com/in/ricardonpaz/"
+                target="_blank"
+              >
+                Linkedin
+              </a>
+            </div>
+            <div className="flex items-cente gap-1 hover:text-orange-400">
+              <GithubIcon size={20} />
+              <a href="http://www.github.com/ricardonun" target="_blank">
+                GitHub
+              </a>
+            </div>
+            <div className="flex items-center gap-1 hover:text-orange-400 border border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
+              <Send size={16} />
+              <a>Contact me</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div className="flex mt-24 lg:mt-44 items-center justify-between p-2 lg:px-48 ">
         <div className="flex flex-col">
           <div>
             <h2 className="text-2xl">Hello, I am</h2>
@@ -76,7 +111,7 @@ export default async function Home() {
             </span>
           </div>
         </div>
-        <div>
+        <div className="hidden lg:flex ">
           <Image
             src="/1598390897429.jpg"
             width={400}
@@ -86,8 +121,9 @@ export default async function Home() {
           />
         </div>
       </div>
-      <div className="flex items-center pt-10" id="about">
-        <div className="w-[60%] px-48 ">
+
+      <div className="flex items-center pt-10 flex-col lg:flex-row" id="about">
+        <div className="lg:w-[60%] w-[100%] px-4 lg:px-48 ">
           <h1 className="text-2xl text-orange-500">
             aboutMe<span className="text-white">&#40; &#41;</span>
           </h1>
@@ -99,7 +135,7 @@ export default async function Home() {
             Typescript and MySql.
           </p>
         </div>
-        <div className="flex w-[50%] flex-col items-center px-48">
+        <div className="flex w-[50%] flex-col items-center lg:px-48 mt-10 lg:mt-0">
           <div>
             <div className="flex items-center justify-between bg-[#4F4F4F] rounded-sm p-3 w-64">
               <div>
@@ -126,14 +162,15 @@ export default async function Home() {
           </div>
         </div>
       </div>
+
       <div
-        className="flex flex-col mt-40 px-48 h-80 pt-4 bg-[#161616]"
+        className="flex flex-col mt-40 p-4 lg:px-48 h-80 pt-4 bg-[#161616]"
         id="skills"
       >
         <h1 className="text-2xl text-orange-500">
           skills<span className="text-white">&#40; &#41;</span>
         </h1>
-        <div className="flex gap-5 pt-5">
+        <div className="grid grid-cols-3  md:flex gap-5 pt-5">
           <Image src="/css3.svg" width={60} height={60} alt="css3" />
           <Image src="/html5.svg" width={60} height={60} alt="html5" />
           <Image
@@ -147,11 +184,11 @@ export default async function Home() {
           <Image src="/typescript.svg" width={60} height={60} alt="css3" />
         </div>
       </div>
-      <div className="flex flex-col mt-4 px-48 h-44" id="projects">
+      <div className="flex flex-col mt-4 p-4 lg:px-48 h-44" id="projects">
         <h1 className="text-2xl text-orange-500">
           projects<span className="text-white">&#40; &#41;</span>
         </h1>
-        <div className="grid grid-cols-5 gap-2 mt-5 p-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 lg:gap-2 mt-5 lg:p-5">
           {projects?.map((project: ProjectProps) => {
             return (
               <ProjectCard
