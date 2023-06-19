@@ -20,7 +20,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="flex px-5 justify-between">
+      <div className="flex px-5 justify-between items-center">
         <h1 className="text-gray-500 flex flex-col lg:flex-row lg:text-2xl ">
           RICARDO <span className="text-white">NUNES</span>
         </h1>
@@ -52,7 +52,7 @@ export default async function Home() {
                 GitHub
               </a>
             </div>
-            <div className="flex items-center gap-1 hover:text-orange-400 border border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
+            <div className="flex items-center gap-1 hover:text-orange-400 border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
               <Send size={16} />
               <a>Contact me</a>
             </div>
@@ -62,7 +62,7 @@ export default async function Home() {
           <span>menu</span>
           <Menu size={40} />
         </div>
-        <nav className="flex flex-col bg-black/20 h-full w-48 left-auto p-4 hidden">
+        <nav className=" flex-col bg-black/20 h-full w-48 left-auto p-4 hidden">
           <div className="flex flex-col">
             <a href="">About</a>
             <a href="">Skills</a>
@@ -84,7 +84,7 @@ export default async function Home() {
                 GitHub
               </a>
             </div>
-            <div className="flex items-center gap-1 hover:text-orange-400 border border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
+            <div className="flex items-center gap-1 hover:text-orange-400 border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
               <Send size={16} />
               <a>Contact me</a>
             </div>
