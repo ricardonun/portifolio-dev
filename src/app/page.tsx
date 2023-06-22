@@ -1,6 +1,8 @@
 import { GithubIcon, LinkedinIcon, Send, Menu } from "lucide-react";
 import { ProjectCard } from "./components/projectsCard";
 import Image from "next/image";
+import { useState } from "react";
+import { NavBar } from "./components/navBar";
 
 interface ProjectProps {
   id: number;
@@ -24,6 +26,8 @@ export default async function Home() {
         <h1 className="text-gray-500 flex flex-col lg:flex-row lg:text-2xl ">
           RICARDO <span className="text-white">NUNES</span>
         </h1>
+        <NavBar />
+
         <nav className="w-full lg:flex items-center justify-between gap-2 px-8 py-3 hidden">
           <div className="flex gap-10 text-xl">
             <a href="#about" className="hover:text-orange-400">
@@ -47,38 +51,6 @@ export default async function Home() {
               </a>
             </div>
             <div className="flex items-center gap-1 hover:text-orange-400">
-              <GithubIcon size={20} />
-              <a href="http://www.github.com/ricardonun" target="_blank">
-                GitHub
-              </a>
-            </div>
-            <div className="flex items-center gap-1 hover:text-orange-400 border-4 rounded-lg hover:border-orange-400 px-2 py-1 text-lg">
-              <Send size={16} />
-              <a>Contact me</a>
-            </div>
-          </div>
-        </nav>
-        <div className="lg:hidden">
-          <span>menu</span>
-          <Menu size={40} />
-        </div>
-        <nav className=" flex-col bg-black/20 h-full w-48 left-auto p-4 hidden">
-          <div className="flex flex-col">
-            <a href="">About</a>
-            <a href="">Skills</a>
-            <a href="">Projects</a>
-          </div>
-          <div className="flex flex-col gap-6 text-xl items-center justify-center">
-            <div className="flex items-center gap-1 hover:text-orange-400">
-              <LinkedinIcon size={20} />
-              <a
-                href="https://www.linkedin.com/in/ricardonpaz/"
-                target="_blank"
-              >
-                Linkedin
-              </a>
-            </div>
-            <div className="flex items-cente gap-1 hover:text-orange-400">
               <GithubIcon size={20} />
               <a href="http://www.github.com/ricardonun" target="_blank">
                 GitHub
