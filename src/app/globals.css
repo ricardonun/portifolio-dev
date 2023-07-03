@@ -10,7 +10,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: "#FFFFFF";
   background: linear-gradient(to right, black, #262626, #727272)
     rgb(var(--background-start-rgb));
 }
